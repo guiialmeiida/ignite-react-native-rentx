@@ -16,7 +16,7 @@ export function Button({
     ...rest
 }: Props) {
     return (
-        <Container {...rest} color={color} >
+        <Container {...rest} color={color}>
             <Title>{title}</Title>
         </Container>
     );

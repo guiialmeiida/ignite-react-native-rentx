@@ -6,7 +6,7 @@ interface ButtonProps extends RectButtonProps {
     color: string;
 }
 
-export const Container = styled(RectButton)`
+export const Container = styled(RectButton) <ButtonProps>`
    width: 100%;
 
    padding: 19px;
