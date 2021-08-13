@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
 
 import theme from '../../styles/theme';
 
@@ -9,6 +10,7 @@ import {
     Container,
     Header,
     Title,
+    Form,
     SubTitle,
     Footer,
 } from './styles';
@@ -33,6 +35,12 @@ export function SignIn() {
                 </SubTitle>
             </Header>
 
+            <Form>
+                <Input
+                    iconName='mail'
+                />
+            </Form>
+
             <Footer>
                 <Button
                     title='Login'
@@ -42,7 +50,7 @@ export function SignIn() {
                 />
 
                 <Button
-                    title="Criar conta gratuita"
+                    title='Criar conta gratuita'
                     onPress={() => { }}
                     color={theme.colors.background_secondary}
                     enabled={true}
