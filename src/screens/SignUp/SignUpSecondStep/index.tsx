@@ -5,6 +5,7 @@ import {
   Keyboard,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
 
 import {
   Container,
@@ -19,16 +20,14 @@ import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
+import { PasswordInput } from '../../../components/PasswordInput';
 
-export function SignUpFirstStep() {
+export function SignUpSecondStep() {
   const navigation = useNavigation();
+  const theme = useTheme();
 
   function handleBack() {
     navigation.goBack();
-  }
-
-  function handleNextStep() {
-    navigation.navigate('SignUpSecondStep');
   }
 
   return (
@@ -53,28 +52,22 @@ export function SignUpFirstStep() {
 
           <Form>
             <FormTitle>
-              1. Dados
+              2. Senha
             </FormTitle>
 
-            <Input
-              iconName='user'
-              placeholder='Nome'
+            <PasswordInput
+              iconName='lock'
+              placeholder='Senha'
             />
-            <Input
-              iconName='mail'
-              placeholder='E-mail'
-              keyboardType='email-address'
-            />
-            <Input
-              iconName='credit-card'
-              placeholder='CNH'
-              keyboardType='numeric'
+            <PasswordInput
+              iconName='lock'
+              placeholder='Repetir Senha'
             />
           </Form>
 
           <Button
-            title='Próximo'
-            onPress={handleNextStep}
+            color={theme.colors.success}
+            title='Cadastrar'
           />
         </Container>
       </TouchableWithoutFeedback>
