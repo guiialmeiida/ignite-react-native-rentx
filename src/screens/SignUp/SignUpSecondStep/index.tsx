@@ -21,6 +21,7 @@ import { Bullet } from '../../../components/Bullet';
 import { Button } from '../../../components/Button';
 import { PasswordInput } from '../../../components/PasswordInput';
 import { Alert } from 'react-native';
+import { api } from '../../../services/api';
 
 interface Params {
   user: {
@@ -44,7 +45,7 @@ export function SignUpSecondStep() {
     navigation.goBack();
   }
 
-  function handleRegister() {
+  async function handleRegister() {
     if (!password || !passwordConfirm) {
       return Alert.alert('Informe a senha e a confirmação');
     }
@@ -53,11 +54,22 @@ export function SignUpSecondStep() {
       return Alert.alert('As senhas não são iguais');
     }
 
-    navigation.navigate('Confirmation', {
-      nextScreenRoute: 'SignIn',
-      title: 'Conta Criada!',
-      message: 'Agora é só fazer login\ne aproveitar.'
-    });
+    await api.post('/users', {
+      name: user.name,
+      email: user.email,
+      driver_license: user.driverLicense,
+      password
+    })
+      .then(() => {
+        navigation.navigate('Confirmation', {
+          nextScreenRoute: 'SignIn',
+          title: 'Conta Criada!',
+          message: 'Agora é só fazer login\ne aproveitar.'
+        });
+      })
+      .catch(() => {
+        Alert.alert('Opa', 'Não foi possível cadastrar');
+      });
   }
 
   return (
