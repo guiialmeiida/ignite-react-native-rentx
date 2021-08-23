@@ -18,7 +18,6 @@ import {
 } from './styles';
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
-import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
 import { PasswordInput } from '../../../components/PasswordInput';
 import { Alert } from 'react-native';
@@ -53,6 +52,12 @@ export function SignUpSecondStep() {
     if (password != passwordConfirm) {
       return Alert.alert('As senhas não são iguais');
     }
+
+    navigation.navigate('Confirmation', {
+      nextScreenRoute: 'SignIn',
+      title: 'Conta Criada!',
+      message: 'Agora é só fazer login\ne aproveitar.'
+    });
   }
 
   return (
