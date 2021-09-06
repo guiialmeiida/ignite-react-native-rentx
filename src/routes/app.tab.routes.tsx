@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components';
 
@@ -9,7 +10,6 @@ import PeopleSvg from '../assets/people.svg';
 import { AppStackRoutes } from './app.stack.routes';
 import { Home } from '../screens/Home';
 import { MyCars } from '../screens/MyCars';
-import { Platform } from 'react-native';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -18,12 +18,14 @@ export function AppTabRoutes() {
 
     return (
         <Navigator
-            tabBarOptions={{
-                activeTintColor: theme.colors.main,
-                inactiveTintColor: theme.colors.text_detail,
-                showLabel: false,
-                style: {
+            screenOptions={{
+                tabBarActiveTintColor: theme.colors.main,
+                tabBarInactiveTintColor: theme.colors.text_detail,
+                tabBarShowLabel: false,
+                headerShown: false,
+                tabBarStyle: {
                     paddingVertical: Platform.OS === 'ios' ? 20 : 0,
+                    height: 78,
                     backgroundColor: theme.colors.background_primary
                 }
             }}
